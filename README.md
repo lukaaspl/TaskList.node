@@ -16,6 +16,9 @@ or just:
 or:
 `node app --add="task content"`
 
+You can also mark task as important by adding `-i` or `--important` at the end:
+`node app -a "important task content" -i`
+
 ### Remove task
 
 `node app -r "task content"`
