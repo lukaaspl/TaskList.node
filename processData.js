@@ -87,7 +87,7 @@ const processData = (parameter, content, important) => {
       tasksJSON.forEach((task, index) => {
         const { id, important, date } = task;
         let content = important
-          ? `PRIORITY! ${task.content}`.bold.underline
+          ? `[!] ${task.content}`.bold.underline
           : task.content;
 
         const result = `${index + 1}. ${content} (id: ${id}) - ${date}`;
