@@ -9,7 +9,9 @@ let tasksJSON;
 // get tasks from json file
 try {
   const tasksBuffer = fs.readFileSync("./tasks.json");
-  tasksJSON = JSON.parse(tasksBuffer);
+  const isAnyTask = tasksBuffer.toString().length > 0;
+
+  tasksJSON = isAnyTask ? JSON.parse(tasksBuffer) : [];
 } catch (error) {
   return log.error(`Couldn't get tasks file: ${error}`);
 }
@@ -37,7 +39,7 @@ const processData = (parameter, content, important) => {
         return log.error("Takie zadanie już istnieje!");
 
       // generate unqiue id
-      const id = tasksJSON[tasksJSON.length - 1].id + 1;
+      const id = tasksJSON.length ? tasksJSON[tasksJSON.length - 1].id + 1 : 1;
 
       // and date
       const date = new Date().toLocaleString();
@@ -84,6 +86,8 @@ const processData = (parameter, content, important) => {
 
     // show list
     case "list":
+      if (tasksJSON.length === 0) return log.error("No task found, add first!");
+
       tasksJSON.forEach((task, index) => {
         const { id, important, date } = task;
         let content = important

@@ -1,6 +1,6 @@
 const minimist = require("minimist");
-const log = require("./log");
-const processData = require("./processData");
+const log = require("./modules/log");
+const processData = require("./modules/processData");
 
 // getting parameters
 const argv = minimist(process.argv.slice(2));
